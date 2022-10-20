@@ -10,7 +10,7 @@ Convert a video of a power monitor into a CSV file containing a frame per row an
 - Oneshot Power Usage (kWh)
 - Total Electricity Bill ($)
 - Oneshot Electricity Bill ($)
-<img src="screenshot.jpg" width="300"/>
+<img src="screenshot.jpg" width="500"/>
 
 ## Requirements
 - A ZHURUI PR10 Power Recorder which can be found [here](https://a.co/d/fwyrkhc)
