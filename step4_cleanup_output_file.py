@@ -6,8 +6,8 @@ import scipy.stats
 import sys
 import time
 
-percentileAmount = 15
-columnsToInclude = [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0]
+percentileAmount = 10
+columnsToInclude = [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0]
 
 # Return the +- value after a set of data
 def percentile(data, p=95):
