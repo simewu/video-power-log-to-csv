@@ -23,6 +23,8 @@ header = next(timestampMapReader)
 
 frameCount = 0
 path = os.path.join('readtext',f'frame_{frameCount}.txt')
+numberOfErrors = 0
+
 while os.path.exists(path):
 	print('Processing:', path)
 	file = open(path, 'r')
@@ -37,18 +39,21 @@ while os.path.exists(path):
 			num2 = float(match[1])
 			values.append(num1)
 			values.append(num2)
+			continue
 
 		if len(values) == 2:
 			num1 = float(match[0])
 			num2 = float(match[1])
 			values.append(num1)
 			values.append(num2)
+			continue
 
 		if len(values) == 4:
 			num1 = float(match[0])
 			num2 = float(match[1])
 			values.append(num1)
 			values.append(num2)
+			continue
 
 		if len(values) == 6:
 			num1 = float(match[0])
@@ -59,9 +64,8 @@ while os.path.exists(path):
 
 	if len(values) == 8:
 		timestamp = next(timestampMapReader)
-		assert int(timestamp[0]) == frameCount
 		line = ''
-		line += str(frameCount) + ','
+		line += str(int(timestamp[0])) + ','
 		line += str(float(timestamp[1]) / 1000) + ','
 		line += str(values[0]) + ','
 		line += str(values[1]) + ','
@@ -74,19 +78,12 @@ while os.path.exists(path):
 		outputFile.write(line + '\n')
 	else:
 		print('!!! ERROR READING', path)
-		print('[contents start]')
-		print(contents)
-		print('[contents end]')
-		sys.exit()
+		# print('[contents start]')
+		# print(contents)
+		# print('[contents end]')
+		numberOfErrors += 1
 
 	frameCount += 1
 	path = os.path.join('readtext',f'frame_{frameCount}.txt')
 
-
-
-
-
-
-
-# img_rgb = Image.frombytes('RGB', img_cv.shape[:2], img_cv, 'raw', 'BGR', 0, 0)
-# print(pytesseract.image_to_string(img_rgb))
+print('Total number of errors:', numberOfErrors, 'out of', frameCount)
