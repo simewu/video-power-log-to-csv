@@ -6,6 +6,11 @@ import numpy as np
 import pytesseract
 pytesseract.pytesseract.tesseract_cmd = os.path.join('C:', os.sep, 'Program Files', 'Tesseract-OCR', 'tesseract.exe')
 
+os.rename('readtext', 'old_readtext')
+
+if not os.path.exists('old_readtext'):
+	os.remove('old_readtext')
+
 if not os.path.exists('readtext'):
 	os.mkdir('readtext')
 
