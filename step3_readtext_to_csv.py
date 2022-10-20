@@ -3,7 +3,7 @@ import re
 import sys
 import csv
 
-outputFile = open('finalOutput.csv', 'w')
+outputFile = open('output.csv', 'w')
 header = ''
 header += 'Frame,'
 header += 'Timestamp (s),'
