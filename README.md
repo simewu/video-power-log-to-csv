@@ -16,8 +16,8 @@ Convert a video of a power monitor into a CSV file containing a frame per row an
 - A ZHURUI PR10 Power Recorder which can be found [here](https://a.co/d/fwyrkhc)
   - Note: To use a different device/user interface, modify the regular expression in Step 3
 - A camera to capture a video of the screen
-- A Windows machine
-- Install Python3 (from [here](https://www.python.org/downloads/)) and Tesseract (64-bit) (from [here](https://github.com/UB-Mannheim/tesseract/wiki))
+- A 64-bit Windows machine
+- Install Python3 and Tesseract (64-bit) (from [here](https://github.com/UB-Mannheim/tesseract/wiki))
 
 ## Usage
 - Record the video and save it as `video.mp4`
@@ -28,8 +28,3 @@ Convert a video of a power monitor into a CSV file containing a frame per row an
 - Double click on `step4_cleanup_output_file.bat` to the top and bottom X percentile of the data, generating `finalOutput.csv`
   - Repeat this step, tweaking `percentileAmount` to be as low as possible to maintain the data quality (my looking at the minimum and maximum values after running the script), and `columnsToInclude` which enumerated the columns in the data, and only considers those marked as "1".
 - You will have now generated `finalOutput.csv`.
-
-## Credits
-- vfdev-5 for his interface with OpenCV2 (https://github.com/vfdev-5/Video2Frames)
-  - The script has been modified to also log the timestamp of each frame
-- Tesseract for their image-to-text converter (https://github.com/tesseract-ocr/tesseract)
