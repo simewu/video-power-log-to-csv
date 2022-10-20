@@ -3,5 +3,5 @@ echo "https://github.com/UB-Mannheim/tesseract/wiki"
 python3 -m pip install pytesseract
 
 python3 step2_frames_to_readtext.py
-echo "DONE"
+echo "DONE WITH STEP 2"
 PAUSE

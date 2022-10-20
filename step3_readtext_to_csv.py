@@ -59,7 +59,6 @@ while os.path.exists(path):
 
 	if len(values) == 8:
 		timestamp = next(timestampMapReader)
-		print(timestamp[0], frameCount)
 		assert int(timestamp[0]) == frameCount
 		line = ''
 		line += str(frameCount) + ','
