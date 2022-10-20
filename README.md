@@ -25,7 +25,7 @@ Convert a video of a power monitor into a CSV file containing a frame per row an
 - Double click on `step2_frames_to_readtext.bat` to convert the frames into `readtext` .txt files using Tesseract
 - Double click on `step3_readtext_to_csv.bat` to process the text files using a regular expression, generating `output.csv`
   - The script will terminate upon reaching an invalid frame
-- Double click on `step4_readtext_to_csv.bat` to the top and bottom X percentile of the data, generating `finalOutput.csv`
+- Double click on `step4_cleanup_output_file.bat` to the top and bottom X percentile of the data, generating `finalOutput.csv`
   - Repeat this step, tweaking `percentileAmount` to be as low as possible to maintain the data quality (my looking at the minimum and maximum values after running the script), and `columnsToInclude` which enumerated the columns in the data, and only considers those marked as "1".
 - You will have now generated `finalOutput.csv`.
 
