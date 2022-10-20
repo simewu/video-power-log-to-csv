@@ -6,7 +6,7 @@ import scipy.stats
 import sys
 import time
 
-percentileAmount = 5
+percentileAmount = 16
 columnsToInclude = [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0]
 
 # Return the +- value after a set of data
