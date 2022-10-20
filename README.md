@@ -32,4 +32,4 @@ Convert a video of a power monitor into a CSV file containing a frame per row an
 ## Credits
 - vfdev-5 for his interface with OpenCV2 (https://github.com/vfdev-5/Video2Frames)
   - The script has been modified to also log the timestamp of each frame
-- Tesseract for their image-to-text converter
+- Tesseract for their image-to-text converter (https://github.com/tesseract-ocr/tesseract)
