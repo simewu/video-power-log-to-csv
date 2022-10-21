@@ -26,5 +26,5 @@ Convert a video of a power monitor into a CSV file containing a frame per row an
 - Double click on `step3_readtext_to_csv.bat` to process the text files using a regular expression, generating `output.csv`
   - The script will skip invalid frames
 - Double click on `step4_cleanup_output_file.bat` to the top and bottom X percentile of the data, generating `finalOutput.csv`
-  - Repeat this step, tweaking `percentileAmount` to be as low as possible to maintain the data quality (my looking at the minimum and maximum values after running the script), and `columnsToInclude` which enumerated the columns in the data, and only considers those marked as "1".
+  - Repeat this step, tweaking `percentileAmount` to be as low as possible to maintain the data quality (by looking at the minimum and maximum values after running the script), and `columnsToInclude` which enumerated the columns in the data, and only considers those marked as "1".
 - You will have now generated `finalOutput.csv`.
