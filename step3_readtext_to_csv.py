@@ -3,6 +3,11 @@ import re
 import sys
 import csv
 
+# Take a sample every X frames
+# Set it to 1 to log every frame
+# ALSO UPDATE THIS VARIABLE IN step2_frames_to_readtext.py
+everyXframes = 15
+
 outputFile = open('output.csv', 'w')
 header = ''
 header += 'Frame,'
@@ -83,7 +88,7 @@ while os.path.exists(path):
 		# print('[contents end]')
 		numberOfErrors += 1
 
-	frameCount += 1
+	frameCount += everyXframes
 	path = os.path.join('readtext',f'frame_{frameCount}.txt')
 
 print('Total number of errors:', numberOfErrors, 'out of', frameCount)

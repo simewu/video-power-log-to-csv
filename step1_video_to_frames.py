@@ -8,6 +8,11 @@ import subprocess
 import json
 import cv2
 
+# Take a sample every X frames
+# Set it to 1 to log every frame
+# ALSO UPDATE THIS VARIABLE IN step2_frames_to_readtext.py
+everyXframes = 15
+
 
 def main(args):
 
@@ -71,6 +76,13 @@ def main(args):
 
     while frameId < frameCount:
         ret, frame = cap.read()
+        if frameId % 100 == 0:
+            print('Frame', frameId, '/', frameCount)
+        if frameId % everyXframes != 0:
+            frameId += int(1 + skipDelta)
+            cap.set(cv2.CAP_PROP_POS_FRAMES, frameId)
+            continue
+
         # print frameId, ret, frame.shape
         if not ret:
             print( "Failed to get the frame {f}".format(f=frameId))
@@ -89,9 +101,7 @@ def main(args):
 
         milliseconds = max(0, cap.get(cv2.CAP_PROP_POS_MSEC))
         timestampFile.write(f'{frameId},{milliseconds},\n')
-        if frameId % 100 == 0:
-            print('Frame', frameId, '/', frameCount)
-
+    
         fname = "frame_" + str(frameId) + ".jpg"
         ofname = os.path.join(args.output, fname)
         ret = cv2.imwrite(ofname, frame)

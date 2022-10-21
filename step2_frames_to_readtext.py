@@ -6,13 +6,18 @@ import numpy as np
 import pytesseract
 pytesseract.pytesseract.tesseract_cmd = os.path.join('C:', os.sep, 'Program Files', 'Tesseract-OCR', 'tesseract.exe')
 
-os.rename('readtext', 'old_readtext')
+# Take a sample every X frames
+# Set it to 1 to log every frame
+# ALSO UPDATE THIS VARIABLE IN step1_video_to_frames.py
+everyXframes = 15
 
-if not os.path.exists('old_readtext'):
+if os.path.exists('old_readtext'):
 	os.remove('old_readtext')
 
-if not os.path.exists('readtext'):
-	os.mkdir('readtext')
+if os.path.exists('readtext'):
+	os.rename('readtext', 'old_readtext')
+
+os.mkdir('readtext')
 
 frameCount = 0
 path = os.path.join('frames',f'frame_{frameCount}.jpg')
@@ -33,5 +38,5 @@ while os.path.exists(path):
 
 	print('    Wrote to:', outputPath)
 
-	frameCount += 1
+	frameCount += everyXframes
 	path = os.path.join('frames',f'frame_{frameCount}.jpg')

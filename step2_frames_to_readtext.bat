@@ -1,3 +1,4 @@
+@ECHO OFF
 echo "Be sure to install tesseract from:"
 echo "https://github.com/UB-Mannheim/tesseract/wiki"
 python3 -m pip install pytesseract
