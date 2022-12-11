@@ -1,10 +1,26 @@
-
-import os
-import cv2
 from PIL import Image
+import cv2
 import numpy as np
+import os
 import pytesseract
-pytesseract.pytesseract.tesseract_cmd = os.path.join('C:', os.sep, 'Program Files', 'Tesseract-OCR', 'tesseract.exe')
+import sys
+import time
+
+pathToTesseract = os.path.join('C:', os.sep, 'Program Files', 'Tesseract-OCR', 'tesseract.exe')
+if os.path.exists(pathToTesseract):
+	pytesseract.pytesseract.tesseract_cmd = pathToTesseract
+else:
+	print()
+	print('ERROR: Cannot find Tesseract executable.')
+	print('You may need to install Tesseract before it can be called using this python script.')
+	print('Opening the installation website in 5 seconds...')
+	time.sleep(5)
+	import webbrowser
+	webbrowser.open('https://github.com/UB-Mannheim/tesseract/wiki')
+	time.sleep(5)
+	print()
+	print('Exiting. Please re-run the script when Tesseract is installed.')
+	sys.exit()
 
 # Take a sample every X frames
 # Set it to 1 to log every frame
