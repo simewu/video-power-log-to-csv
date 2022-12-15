@@ -6,7 +6,9 @@ import scipy.stats
 import sys
 import time
 
-percentileAmount = 10
+percentileAmount = None #30
+pmin = 40
+pmax = 80
 columnsToInclude = [0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0]
 
 # Return the +- value after a set of data
@@ -38,11 +40,12 @@ readerFile.close()
 percentileMin = []
 percentileMax = []
 for i, array in enumerate(data):
-	pmin = 0
-	pmax = 100
 	if columnsToInclude[i] == 1:
-		pmin = percentile(array, percentileAmount)
-		pmax = percentile(array, 100 - percentileAmount)
+		if pmin is None or pmax is None:
+			pmin = 0
+			pmax = 10000000
+			pmin = percentile(array, percentileAmount)
+			pmax = percentile(array, 100 - percentileAmount)
 	percentileMin.append(pmin)
 	percentileMax.append(pmax)
 

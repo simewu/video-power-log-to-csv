@@ -11,7 +11,7 @@ import cv2
 # Take a sample every X frames
 # Set it to 1 to log every frame
 # ALSO UPDATE THIS VARIABLE IN step2_frames_to_readtext.py
-everyXframes = 15
+everyXframes = 1 # 15
 
 
 def main(args):

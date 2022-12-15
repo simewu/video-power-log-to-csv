@@ -6,7 +6,7 @@ import csv
 # Take a sample every X frames
 # Set it to 1 to log every frame
 # ALSO UPDATE THIS VARIABLE IN step2_frames_to_readtext.py
-everyXframes = 15
+everyXframes = 1
 
 outputFile = open('output.csv', 'w')
 header = ''
@@ -34,26 +34,39 @@ while os.path.exists(path):
 	print('Processing:', path)
 	file = open(path, 'r')
 	contents = file.read()
+	# Remove newlines and unnecessary numbers
+	contents = re.sub(r' *(?=\n *)+', ' ', contents)
+	contents = re.sub(r' +', ' ', contents)
+	# Force decimals to have no leading/tailing spaces
+	contents = re.sub(r' *\. *(?=[0-9])', '.', contents)
+	contents = re.sub(r'([0-9]+) *([0-9]+) *W', '\\1.\\2W', contents)
 	file.close()
 
 	matches = re.findall(r'([0-9]+\.?[0-9]+)\.*[^0-9\.]+\.*([0-9]+\.?[0-9]+)', contents)
 	values = []
 	for match in matches:
-		if len(values) == 0: # First two numbers
+		match = list(match)
+		if len(values) == 0: # First two numbers (float)
+			#if '.' not in match[0] or '.' not in match[1]:
+			#	break
 			num1 = float(match[0])
 			num2 = float(match[1])
 			values.append(num1)
 			values.append(num2)
 			continue
 
-		if len(values) == 2:
+		if len(values) == 2: # Third and fourth numbers (float)
+			if '.' not in match[0] or '.' not in match[1]:
+				break
 			num1 = float(match[0])
 			num2 = float(match[1])
 			values.append(num1)
 			values.append(num2)
 			continue
 
-		if len(values) == 4:
+		if len(values) == 4: # Fifth and sixth numbers (float)
+			#if '.' not in match[0] or '.' not in match[1]:
+			#	break
 			num1 = float(match[0])
 			num2 = float(match[1])
 			values.append(num1)
@@ -66,6 +79,9 @@ while os.path.exists(path):
 			values.append(num1)
 			values.append(num2)
 			break
+
+	while len(values) < 8:
+		values.append(0)
 
 	if len(values) == 8:
 		timestamp = next(timestampMapReader)
