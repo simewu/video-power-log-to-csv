@@ -39,7 +39,7 @@ while os.path.exists(path):
 	contents = re.sub(r' +', ' ', contents)
 	# Force decimals to have no leading/tailing spaces
 	contents = re.sub(r' *\. *(?=[0-9])', '.', contents)
-	contents = re.sub(r'([0-9]+) *([0-9]+) *W', '\\1.\\2W', contents)
+	contents = re.sub(r'([0-9\.]+) *([0-9\.]+) *([WA])', '\\1.\\2\\3', contents)
 	file.close()
 
 	matches = re.findall(r'([0-9]+\.?[0-9]+)\.*[^0-9\.]+\.*([0-9]+\.?[0-9]+)', contents)
